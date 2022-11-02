@@ -1,0 +1,42 @@
+.container {
+  width: 70%;
+  min-width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.heading-text {
+  font-size: 1.8rem;
+  background-color: #b0e0e6;
+  padding: 0.8rem 1.7rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+.boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.board {
+  padding: 0.6rem;
+  width: 30.5%;
+  min-width: 14rem;
+  min-height: 4.5rem;
+  border-radius: 0.3rem;
+}
+#todo {
+  background-color: #CD5C5C;
+}
+
+#inprogress {
+  background-color: #90ee90;
+}
+
+#done {
+  background-color: #fdf5d6;
+}
