@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kanban Board</title>
+</head>
+<body>
+    <div class = "heading">
+      <strong class="heading-text">Kanban Board</strong>
+    </div>
+    <div class = "boxes">
+          <div id="todo" class = "board"><strong>To Do</strong>
+            <form id = "new-task">
+              <div class = "form-group">
+                <label id = "task-name" for="name">Task Name</label>
+                <input
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        placeholder="Task"
+        required
+      />
+              </div>
+              <div class = "form-group">
+                <label id = "task-description" for="name">Task Description</label>
+                <input
+        type="text"
+        name="description"
+        id="description"
+        class="form-control"
+      />
+              </div>
+              <div class="form-group">
+      <p>Status</p>
+      <select id="dropdown" name="task" class="form-control" required>
+        <option disabled selected value>Choose Task Status</option>
+        <option value="todo">To Do</option>
+        <option value="inprogress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+            </form>
+          </div>
+          <div id="inprogress" class = "board"><strong>In Progress</strong></div>
+          <div id="done" class = "board"><strong>Done</strong></div>
+    </div>
 
+</body>
+</html>
