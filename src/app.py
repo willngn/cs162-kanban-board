@@ -5,7 +5,7 @@ from sqlalchemy import func
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'kanban.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -17,12 +17,21 @@ class Kanban(db.Model):
 
     def __repr__(self):
         return f'<Task {self.id}: {self.title}>'
-@app.route("/")
+
+db.create_all()
+db.session.commit()
+
+@app.route("/index")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
     doing = Kanban.query.filter_by(status='doing').all()
     done = Kanban.query.filter_by(status='done').all()
     return render_template('index.html', todo=todo, doing=doing, done=done)
+
+@app.route("/")
+def hello_world():
+    """Initialize server"""
+    return "Server is running"
 
 # because we add more tasks to the board --> add data 
 # --> we need to post to server
@@ -47,5 +56,4 @@ def delete(task_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True, port=5000)
