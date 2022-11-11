@@ -1,10 +1,12 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///kanban-board.db'
-
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Kanban(db.Model):
@@ -13,6 +15,8 @@ class Kanban(db.Model):
     description = db.Column(db.String(500))
     status = db.Column(db.String(50))
 
+    def __repr__(self):
+        return f'<Task {self.id}: {self.title}>'
 @app.route("/")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
@@ -42,8 +46,6 @@ def delete(task_id):
     db.session.commit()
     return redirect(url_for('index'))
 
-db.create_all()
-db.session.commit()
-
 if __name__ == '__main__':
-    app.run()
+    db.create_all()
+    app.run(debug=True, port=5000)
