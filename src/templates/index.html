@@ -1,48 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Kanban Board</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <div class = "heading">
       <strong class="heading-text">Kanban Board</strong>
     </div>
-    <div class = "boxes">
-          <div id="todo" class = "board"><strong>To Do</strong>
-            <form id = "new-task">
-              <div class = "form-group">
+
+
+    <div class="form">
+        <h3>Add a new task:</h3>
+        <form id = "new-task" action="{{ url_for('add-task') }}" method="POST">
+            <div class = "form-group">
                 <label id = "task-name" for="name">Task Name</label>
                 <input
-        type="text"
-        name="name"
-        id="name"
-        class="form-control"
-        placeholder="Task"
-        required
-      />
-              </div>
-              <div class = "form-group">
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="form-control"
+                    placeholder="Task"
+                    required
+                />
+            </div>
+            <div class = "form-group">
                 <label id = "task-description" for="name">Task Description</label>
                 <input
-        type="text"
-        name="description"
-        id="description"
-        class="form-control"
-      />
-              </div>
-              <div class="form-group">
-      <p>Status</p>
-      <select id="dropdown" name="task" class="form-control" required>
-        <option disabled selected value>Choose Task Status</option>
-        <option value="todo">To Do</option>
-        <option value="inprogress">In Progress</option>
-        <option value="done">Done</option>
-      </select>
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <p>Status</p>
+                <select id="dropdown" name="task" class="form-control" required>
+                    <option disabled selected value>Choose Task Status</option>
+                    <option value="todo">To Do</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            <input type="submit" value="Create">
+        </form>
     </div>
-            </form>
-          </div>
-          <div id="inprogress" class = "board"><strong>In Progress</strong></div>
-          <div id="done" class = "board"><strong>Done</strong></div>
+
+    <div class = "boxes">
+        <div id="todo" class = "board">
+            <strong>To Do</strong>
+            {% if todo|length %}
+              {% for item in todo %}
+                <div class="complete todo">
+                    <p>{{ item.title }}</p>
+                    <div class="edit">
+                        <form action="{{ url_for('update_status', task_id=item.id, task_status='doing') }}" method="POST">
+                            <input type="submit" value="Doing">
+                        </form>
+                        <form action="{{ url_for('update_status', task_id=item.id, task_status='done') }}" method="POST">
+                            <input type="submit" value="Done">
+                        </form>
+                        <form action="{{ url_for('delete', task_id=item.id) }}" method="POST">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="boxes">
+              </div>
+            {% endif %}
+        </div>
+
+        <div id="inprogress" class = "board"><strong>In Progress</strong></div>
+        <div id="done" class = "board"><strong>Done</strong></div>
     </div>
 
 </body>
