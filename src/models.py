@@ -1,8 +1,6 @@
-from src import create_app
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, String, Integer
+from src import db
 
-app = create_app()
-db = SQLAlchemy(app)
 class Kanban(db.Model):
     __tablename__ = "kanban"
     id = db.Column('task_id', db.Integer, primary_key=True)

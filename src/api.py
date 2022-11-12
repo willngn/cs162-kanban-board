@@ -1,10 +1,9 @@
-from src import create_app
+from src import db, app
 from flask import render_template, request, url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
 from .models import Kanban
 
-app = create_app()
-db = SQLAlchemy(app)
+
+
 @app.route("/")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
