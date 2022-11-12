@@ -10,4 +10,4 @@ app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = os.urandom(24)
 db = SQLAlchemy(app)
 
-from app import api
+from src import api
