@@ -5,7 +5,6 @@ from .models import Kanban
 
 app = create_app()
 db = SQLAlchemy(app)
-
 @app.route("/")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
