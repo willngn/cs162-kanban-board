@@ -10,5 +10,5 @@ def create_app():
     app.config['DEBUG'] = True
     app.config['SECRET_KEY'] = os.urandom(24)
     db = SQLAlchemy(app)
-
+    return app
 create_app()
