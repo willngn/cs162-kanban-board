@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer
-from app import db
+from src import db
 
 class Kanban(db.Model):
     __tablename__ = "kanban"

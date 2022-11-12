@@ -1,4 +1,4 @@
-from app import db, app
+from src import db, app
 from flask import render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from .models import Kanban
