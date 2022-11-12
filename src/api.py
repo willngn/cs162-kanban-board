@@ -3,7 +3,6 @@ from flask import render_template, request, url_for, redirect
 from .models import Kanban
 
 
-
 @app.route("/")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
