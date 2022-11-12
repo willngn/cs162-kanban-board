@@ -1,25 +1,7 @@
-import os
-from flask import Flask, render_template, request, url_for, redirect
+from app import db, app
+from flask import render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
-
-app = Flask(__name__)
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'kanban.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-class Kanban(db.Model):
-    id = db.Column('task_id', db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    description = db.Column(db.String(500))
-    status = db.Column(db.String(50))
-
-    def __repr__(self):
-        return f'<Task {self.id}: {self.title}>'
-
-db.create_all()
-db.session.commit()
+from .models import Kanban
 
 @app.route("/index")
 def index():
