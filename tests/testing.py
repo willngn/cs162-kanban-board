@@ -65,7 +65,7 @@ class appFunctionalityTesting(generalTesting):
         self.assertEqual(holder2.description, "Hey")
         self.assertEqual(holder2.status, "done")
     
-    def test_delete(self):
+    def testDeleteTasks(self):
         """Task cannot be found after being deleted"""
         # get a task first
         self.add(title="Hello", des="Hey", status="todo")

@@ -12,7 +12,7 @@ class generalTesting(unittest.TestCase):
         app.config.update(TESTING=True)
         self.context = app.test_request_context()
         self.context.push()
-        self.client = app.test_client()
+        self.app = app.test_client()
         # make sure clean db
         db.drop_all()
         db.create_all()
