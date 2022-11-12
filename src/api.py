@@ -3,17 +3,12 @@ from flask import render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from .models import Kanban
 
-@app.route("/index")
+@app.route("/")
 def index():
     todo = Kanban.query.filter_by(status='todo').all()
     doing = Kanban.query.filter_by(status='doing').all()
     done = Kanban.query.filter_by(status='done').all()
     return render_template('index.html', todo=todo, doing=doing, done=done)
-
-@app.route("/")
-def hello_world():
-    """Initialize server"""
-    return "Server is running"
 
 # because we add more tasks to the board --> add data 
 # --> we need to post to server
