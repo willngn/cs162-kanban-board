@@ -51,7 +51,7 @@
     <div class = "boxes">
         <div id="todo" class = "board">
             <strong>To Do</strong>
-            {% if todo|length %}
+            {% if todo|length > 0%}
               {% for item in todo %}
                 <div class="complete todo">
                     <p>{{ item.title }}</p>
@@ -70,13 +70,14 @@
               {% endfor %}
             {% else %}
               <div class="boxes">
+                <p> Let's fill this up! </p>
               </div>
             {% endif %}
         </div>
 
         <div id="inprogress" class = "board">
             <strong>In Progress</strong>
-            {% if doing|length %}
+            {% if doing|length > 0 %}
               {% for item in doing %}
                 <div class="complete doing">
                     <p>{{ item.title }}</p>
@@ -92,12 +93,13 @@
               {% endfor %}
             {% else %}
               <div class="boxes">
+                <p> Let's fill this up! </p>
               </div>
             {% endif %}
         </div>
         <div id="done" class = "board">
             <strong>Done</strong>
-            {% if done|length %}
+            {% if done|length > 0%}
               {% for item in done %}
                 <div class="complete doing">
                     <p>{{ item.title }}</p>
@@ -110,6 +112,7 @@
               {% endfor %}
             {% else %}
               <div class="boxes">
+                <p> Let's fill this up! </p>
               </div>
             {% endif %}
         </div>
