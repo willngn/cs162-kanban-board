@@ -76,8 +76,8 @@
 
         <div id="inprogress" class = "board">
             <strong>In Progress</strong>
-            {% if todo|length %}
-              {% for item in todo %}
+            {% if doing|length %}
+              {% for item in doing %}
                 <div class="complete doing">
                     <p>{{ item.title }}</p>
                     <div class="edit">
@@ -97,8 +97,8 @@
         </div>
         <div id="done" class = "board">
             <strong>Done</strong>
-            {% if todo|length %}
-              {% for item in todo %}
+            {% if done|length %}
+              {% for item in done %}
                 <div class="complete doing">
                     <p>{{ item.title }}</p>
                     <div class="edit">
