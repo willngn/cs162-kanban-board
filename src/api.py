@@ -17,14 +17,14 @@ def hello_world():
 
 # because we add more tasks to the board --> add data 
 # --> we need to post to server
-@app.route('/add-task', methods = ['POST'])
+@app.route('/add_task', methods = ['POST'])
 def add_task():
     holder = Kanban(title=request.form['title'], description=request.form['description'], status=request.form['status'])
     db.session.add(holder)
     db.session.commit()
     return redirect(url_for('index'))
 
-@app.route('/update-status/<task_id>/<task_status>', methods = ['POST'])
+@app.route('/update_status/<task_id>/<task_status>', methods = ['POST'])
 def update_status(task_id, task_status):
     holder = Kanban.query.filter_by(id=task_id).first()
     holder.status = task_status
