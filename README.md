@@ -8,7 +8,7 @@ This is a very ugly and basic Kanban board built in HTML, CSS for frontend and F
 3. Delete a task
 
 ## Project Structure
-
+```
 cs162-kanban-board
 │   README.md
 │   requirements.txt    
@@ -32,8 +32,7 @@ cs162-kanban-board
 |       
 |
 |   |____ testing.py       
-|       
-
+```
 ## Installation
 
 Remember to be at the root director, run the following in your terminal:
