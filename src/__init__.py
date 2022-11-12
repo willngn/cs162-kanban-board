@@ -3,7 +3,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 def create_app():
-
     app = Flask(__name__)
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'kanban.db')
@@ -11,3 +10,5 @@ def create_app():
     app.config['DEBUG'] = True
     app.config['SECRET_KEY'] = os.urandom(24)
     db = SQLAlchemy(app)
+
+create_app()
