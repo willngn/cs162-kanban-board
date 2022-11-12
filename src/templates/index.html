@@ -40,7 +40,7 @@
                 <select id="status" name="status" class="form-control" required>
                     <option disabled selected value>Choose Task Status</option>
                     <option value="todo">To Do</option>
-                    <option value="inprogress">In Progress</option>
+                    <option value="doing">In Progress</option>
                     <option value="done">Done</option>
                 </select>
             </div>
@@ -75,7 +75,7 @@
             {% endif %}
         </div>
 
-        <div id="inprogress" class = "board">
+        <div id="doing" class = "board">
             <strong>In Progress</strong>
             {% if doing|length > 0 %}
               {% for item in doing %}
@@ -97,11 +97,13 @@
               </div>
             {% endif %}
         </div>
+
+
         <div id="done" class = "board">
             <strong>Done</strong>
-            {% if done|length > 0%}
+            {% if done|length > 0 %}
               {% for item in done %}
-                <div class="complete doing">
+                <div class="complete done">
                     <p>{{ item.title }}</p>
                     <div class="edit">
                         <form action="{{ url_for('delete', task_id=item.id) }}" method="POST">
