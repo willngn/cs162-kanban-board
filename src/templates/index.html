@@ -74,9 +74,45 @@
             {% endif %}
         </div>
 
-        <div id="inprogress" class = "board"><strong>In Progress</strong></div>
-        <div id="done" class = "board"><strong>Done</strong></div>
+        <div id="inprogress" class = "board">
+            <strong>In Progress</strong>
+            {% if todo|length %}
+              {% for item in todo %}
+                <div class="complete doing">
+                    <p>{{ item.title }}</p>
+                    <div class="edit">
+                        <form action="{{ url_for('update_status', task_id=item.id, task_status='done') }}" method="POST">
+                            <input type="submit" value="Done">
+                        </form>
+                        <form action="{{ url_for('delete', task_id=item.id) }}" method="POST">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="boxes">
+              </div>
+            {% endif %}
+        </div>
+        <div id="done" class = "board">
+            <strong>Done</strong>
+            {% if todo|length %}
+              {% for item in todo %}
+                <div class="complete doing">
+                    <p>{{ item.title }}</p>
+                    <div class="edit">
+                        <form action="{{ url_for('delete', task_id=item.id) }}" method="POST">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="boxes">
+              </div>
+            {% endif %}
+        </div>
     </div>
-
 </body>
 </html>
