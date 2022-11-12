@@ -14,20 +14,20 @@
 
     <div class="form">
         <h3>Add a new task:</h3>
-        <form id = "new-task" action="{{ url_for('add_task') }}" method="POST">
+        <form id = "new-task" action="/add" method="POST">
             <div class = "form-group">
-                <label id = "task-name" for="name">Task Name</label>
+                <label id = "task-title" for="title">Task Name</label>
                 <input
                     type="text"
-                    name="name"
-                    id="name"
+                    name="title"
+                    id="title"
                     class="form-control"
                     placeholder="Task"
                     required
                 />
             </div>
             <div class = "form-group">
-                <label id = "task-description" for="name">Task Description</label>
+                <label id = "task-description" for="title">Task Description</label>
                 <input
                     type="text"
                     name="description"
