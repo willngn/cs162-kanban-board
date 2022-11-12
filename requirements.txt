@@ -1,0 +1,6 @@
+flask==2.2.2
+Jinja2>=3.0
+pip==22.3.1
+py==1.9.0
+flask-sqlalchemy==3.0.2
+SQLAlchemy>=1.4.18
