@@ -1,7 +1,7 @@
 from src import db, app
 from flask import render_template, request, url_for, redirect
+from flask_sqlalchemy import SQLAlchemy
 from .models import Kanban
-
 
 @app.route("/")
 def index():
@@ -9,7 +9,7 @@ def index():
     doing = Kanban.query.filter_by(status='doing').all()
     done = Kanban.query.filter_by(status='done').all()
     return render_template('index.html', todo=todo, doing=doing, done=done)
-
+    
 # because we add more tasks to the board --> add data 
 # --> we need to post to server
 @app.route('/add_task', methods = ['POST'])
