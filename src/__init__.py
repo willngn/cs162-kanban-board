@@ -10,4 +10,5 @@ app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = os.urandom(24)
 db = SQLAlchemy(app)
 app.app_context().push()
+
 from src import api

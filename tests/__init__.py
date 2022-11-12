@@ -20,8 +20,7 @@ class generalTesting(unittest.TestCase):
 
     def tearDown(self):
         """After every test case"""
-        db.drop_all()
-        self.context.pop()
+        pass
 
     def testApp(self):
         """App exists! and in testing mode!"""
