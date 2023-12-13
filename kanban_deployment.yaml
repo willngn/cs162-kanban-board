@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanban-deployment
+spec:
+  replicas: 3  # Adjust as needed
+  selector:
+    matchLabels:
+      app: kanban
+  template:
+    metadata:
+      labels:
+        app: kanban
+    spec:
+      containers:
+        - name: kanban
+          image: kanban:latest  # Build your Docker image for the Flask app
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: DATABASE_URI
+              value: postgresql+psycopg2://ngttam:password@postgres-service:5432/kanban
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kanban-service
+spec:
+  selector:
+    app: kanban
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 5000

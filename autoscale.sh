@@ -1,0 +1,7 @@
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+kubectl autoscale deployment kanban-deployment --cpu-percent=50 --min=1 --max=10               
+
+kubectl get hpa
+
+kubectl get hpa kanban-deployment --watch
