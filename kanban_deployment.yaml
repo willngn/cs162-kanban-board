@@ -17,7 +17,7 @@ spec:
           image: kanban:latest  # Build your Docker image for the Flask app
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 5000
+            - containerPort: 5001
           resources:
             requests:
               memory: "64Mi"
@@ -39,4 +39,5 @@ spec:
   ports:
     - protocol: TCP
       port: 9090
-      targetPort: 5000
+      targetPort: 5001
+  type: NodePort
