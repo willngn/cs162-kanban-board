@@ -15,6 +15,7 @@ spec:
       containers:
         - name: postgres
           image: postgres:latest
+          # username, password and database name to construct the URI
           env:
             - name: POSTGRES_DB
               value: kanban

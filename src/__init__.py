@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
+# be careful with the uri to establish correct connection with PostgreSQL
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://ngttam:password@postgres-service:5432/kanban'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG'] = True

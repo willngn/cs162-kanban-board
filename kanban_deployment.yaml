@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: kanban-deployment
 spec:
-  replicas: 3  # Adjust as needed
+  replicas: 3  # 3 pods of the app
   selector:
     matchLabels:
       app: kanban
@@ -19,12 +19,14 @@ spec:
           ports:
             - containerPort: 5001
           resources:
+          # specify the app's resource capacity
             requests:
               memory: "64Mi"
               cpu: "250m"
             limits:
               memory: "128Mi"
               cpu: "500m"
+          # database connection
           env:
             - name: DATABASE_URI
               value: postgresql+psycopg2://ngttam:password@postgres-service:5432/kanban

@@ -1,6 +1,7 @@
 # Delete the Kubernetes deployment and service
 echo "Deleting Kubernetes deployment and service..."
 
+# get these deployments and services out of Kubernetes
 kubectl delete -f postgres_persistent.yaml
 kubectl delete -f postgres_deployment.yaml
 kubectl delete -f kanban_deployment.yaml
